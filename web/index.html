@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Viewport meta tag for responsive design. -->
+<!-- tells browser to scale website's width to match device screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STEM learning platform</title>
+<!-- link style sheet for page design -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!--navigation for the subject pages and tuner -->
+<!--Show page is used to swap between them so that the serial connection for the Pico 2 is always maintained -->
+<!--a with no "real" links to prevent page refreshing that would disconnect tuner -->
+<nav id="navbar">
+<div class="navigationLinks">
+<a href="#" onclick="showPage('tuner')">Tuner</a> 
+<a href="#" onclick="showPage('science')">Science</a>
+<a href="#" onclick="showPage('maths')">Maths</a>
+<a href="#" onclick="showPage('cs')">Computer Science</a>
+</div>
+
+<!-- connecting -->
+    <div id="controls">
+    <!-- User must connect pico 2 before using tuner -->
+    <button id="connect-btn">Connect Device</button>
+    <!--span and red circle to indicate connection status-->
+    <span id="status">🔴 Device Disconnected</span>
+    </div>
+    </nav>
+
+ <!--tuner controling. updated with javascript -->
+    <main id="tuner" class="page active">
+    <div id="state_indicator">Ready</div>
+    <div id="note-display">--</div>
+    <div id="hz-display">0.0 Hz</div>
+    
+        
+    <div id="spectrum-area" style="display:none; flex-direction:column; align-items:center; width: 100%; max-width: 500px;">
+    <div id="spectrum-container" style="display: block; width: 100%;">
+            <!-- spectrum canvas allows js to draw frequency spectrum as 1 graphic. efficient -->
+    <canvas id="spectrum-canvas" width="500" height="150" style="width:100%; height:auto; background: #fff; border-radius: 8px;"></canvas>
+    </div> <!-- faded colour chosen for pop up hint after recording -->
+    <p style="margin-top: 10px; color: #81a1a3; font-size: 0.9rem;">what is this? hint: visit the science page!</p></div>
+
+    <div id="audio-tools" style="margin-top:20px; text-align:center; background:#fff;
+    padding:20px; border-radius:15px; box-shadow:0 4px 6px rgba(0,0,0,0.05); width: 100%; max-width: 400px;">
+            <!-- to replay manipulated audio out of devices speaker -->
+    <button id="replay-btn" disabled style="padding:10px 20px; border-radius:8px;
+    cursor:pointer; background:#2ecc71; color:white; border:none; font-weight:bold;">🔊 Replay via Browser</button>
+
+    <div style="margin-top:15px;">
+    <label style="font-weight:bold; display:block; margin-bottom:5px;">Frequency Shift (Pitch):</label>
+    <!-- frequency/pitch manipulation slider -->
+    <input type="range" id="pitch-slider" min="0.2" max="4.0" step="0.1" value="1.0" style="width:100%;">
+    <div id="pitch-label" style="margin-top:5px; color:#334c64;">Current: 1.0x (Normal)</div>
+    </div>
+    </div>
+
+        <!--button to click to record note -->
+    <button id="record-btn" style="margin-top:20px;">Record Note (3s)</button>
+    </main>
+<!--^^tuner part over -->
+
+<!--subject sections and rest of the website below -->
+
+<!--computer science -->
+<!--computer science topicc cards -->
+<main id="cs" class="page">
+<div class="header-text-group">
+<h1>Computer Science</h1>
+<div class="subject-grid">
+<div class="image-card" onclick="showPage('cs-one')">
+<div class="card-image"></div>
+<div class="card-text">
+<h3>Algorithms and sequences</h3>
+<p>How do computers understand instructions?</p>
+</div>
+</div>
+
+
+<div class="image-card" onclick="showPage('cs-two')">
+<div class="card-image"></div>
+<div class="card-text">
+<h3>Programming</h3>
+<p>Learn Python basics</p>
+</div></div>
+
+<div class="image-card" onclick="showPage('cs-task')">
+<div class="card-image"></div>
+<div class="card-text">
+<h3>Programming Task</h3>
+<p>Try this programming task!</p>
+</div>
+</div>
+</div>
+
+</main>
+
+<!--maths section -->
+<main id="maths" class="page">
+<div class="header-text-group">
+<h1>Maths</h1>
+<p style="color: #7f8c8d;">
+Discover the mathematics behind sound, frequency and encryption!
+</p>
+
+<div class="subject-grid">
+<div class="image-card" onclick="showPage('maths-one')">
+<div class="card-image"></div>
+<div class="card-text">
+<h3>Caesar Cipher</h3>
+<p>Learn to create secret messages...</p>
+</div>
+</div>
+
+<div class="image-card" onclick="showPage('maths-two')">
+<div class="card-image"></div>
+<div class="card-text">
+<h3>Octaves</h3>
+<p>Understand frequency</p>
+</div>
+</div>
+<div class="image-card" onclick="showPage('maths-task')">
+<div class="card-image"></div>
+<div class="card-text">
+<h3>Calculations</h3>
+<p>Perform frequency calculations</p>
+</div>
+</div>
+</div>
+</main>
+
+<!--science secton-->
+<main id="science" class="page">
+<div class="char-header">
+<div class="header-text-group">
+<h1>Science</h1>
+<p style="color: #7f8c8d;">Explore the physics behind sound</p>
+</div>
+</div>
+
+<div class="subject-grid">
+<div class="image-card" onclick="showPage('sci-core')">
+<div class="card-image"></div>
+<div class="card-text">
+<h3>Psychoacoustics</h3>
+<p>How exactly do we hear sound?</p>
+</div>
+</div>
+
+<div class="image-card" onclick="showPage('sci-how')">
+<div class="card-image"></div>
+<div class="card-text">
+<h3>Sound Waves and Frequency</h3>
+<p>How sound travels</p>
+</div>
+</div>
+
+<div class="image-card" onclick="showPage('sci-tasks')">
+<div class="card-image"></div>
+<div class="card-text">
+<h3>Tuner</h3>
+<p>Learn how to use and understand the tuner</p>
+</div>
+</div>
+</div>
+</main>
+
+<!--subpages -->
+<!-- computer science pages-->
+    <main id="cs-one" class="page">
+    <button onclick="showPage('cs')">Go Back</button>
+    <h1>Binary & Logic</h1>
+    </main>
+
+    <main id="cs-two" class="page">
+    <button onclick="showPage('cs')">Go Back</button>
+    <h1>Algorithms</h1>
+    </main>
+
+    <main id="cs-task" class="page">
+    <button onclick="showPage('cs')">Go Back</button>
+    <h1>Programming Tasks</h1>
+    </main>
+
+<!--maths pages-->
+    <main id="maths-one" class="page">
+    <button onclick="showPage('maths')">Go Back</button>
+    <h1>Caesar Cipher</h1>
+    </main>
+
+    <main id="maths-two" class="page">
+    <button onclick="showPage('maths')">Go Back</button>
+    <h1>Octaves</h1>
+    </main>
+
+    <main id="maths-task" class="page">
+    <button onclick="showPage('maths')">Go Back</button>
+    <h1>Frequency Tasks</h1>
+    </main>
+
+    <!-- science -->
+    <main id="sci-core" class="page">
+    <button onclick="showPage('science')">Go Back</button>
+    <h1>Psychoacoustics</h1>
+    </main>
+
+
+    <main id="sci-how" class="page">
+    <button onclick="showPage('science')">Go Back</button>
+    <h1>Sound Waves</h1>
+    </main>
+
+
+    <main id="sci-tasks" class="page">
+    <button onclick="showPage('science')">Go Back</button>
+    <h1>Tuner</h1>
+    </main>
+
+<!-- connect to javascript so it works -->
+<script src="script.js"></script>
+</body>
+</html>

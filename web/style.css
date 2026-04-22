@@ -1,0 +1,201 @@
+/*layouts */
+body, html {
+height: 100%;
+margin: 0;
+font-family:Arial,Helvetica, sans-serif;
+display: flex;
+flex-direction: column;
+background-color: #ecf5ff; 
+color: #2c3e50;
+}
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background: #2c3e50;
+    color: white;
+}
+
+.navigationLinks a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.navigationLinks a:hover { opacity: 1;}
+
+#controls button {
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background: #27ae60;
+    color: white;
+    font-weight: bold;
+}
+
+/* --- pages--- */
+.page {
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    padding: 40px 20px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.page.active { display: flex; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Character Header Layout --- */
+.char-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.header-text-group {
+    flex: 1;
+    text-align: center;
+}
+
+.header-char {
+    width: 140px;
+    height: 140px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px dashed #bdc3c7; /* Placeholder style */
+    background: #fff;
+    overflow: hidden;
+    animation: friendly-float 3s ease-in-out infinite;
+}
+
+@keyframes friendly-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }}
+
+/* --- 3-Box Image Grid --- */
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1100px;}
+
+.image-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid #e1e8ed;
+}
+
+/* border colour when hovering over a subject card */
+.image-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+border-color: #9e0a65;
+}
+
+.card-image {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    background-color: #4f2f98; /* Placeholder colour for topic card*/
+}
+
+/*  align the text*/
+.card-text {
+padding: 20px;
+text-align: center;
+}
+
+/* --- components for tuners --- */
+#note-display { font-size: 150px; font-weight: bold; color: #26394d; }
+#hz-display { font-size: 32px; color: #4b4848; }
+#record-btn {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+.back-btn {
+    align-self: flex-start;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background: #dfe6e9;
+    font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+    .char-header { flex-direction: column; gap: 20px; }
+    .header-text-group { order: -1; }
+    .subject-grid { grid-template-columns: 1fr; }
+}
+
+.lesson-box {
+    background: #ffffff;
+    padding: 20px;
+    margin: 15px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    max-width: 800px;
+    text-align: left;
+}
+
+.lesson-box h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.lesson-box p {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+.lesson-box ul {
+    margin-left: 20px;
+}
+
+/* Example styling */
+.example-box {
+    border-left: 6px solid #3498db;
+}
+
+/* Task styling */
+.task-box {
+    border-left: 6px solid #e67e22;
+}
+
+/* Images */
+.lesson-image {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
